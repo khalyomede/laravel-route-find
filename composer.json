@@ -1,0 +1,48 @@
+{
+    "name": "khalyomede/laravel-route-find",
+    "description": "Find the route name and file path with number from any real URLs.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Khalyomede\\LaravelRouteFind\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khalyomede",
+            "email": "khalyomede@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "orchestra/testbench": "6.20.1",
+        "nunomaduro/collision": "5.9.0",
+        "phpstan/phpstan": "0.12.98",
+        "friendsofphp/php-cs-fixer": "3.1.0",
+        "thibautselingue/local-php-security-checker-installer": "1.0.3"
+    },
+    "require": {
+        "laravel/framework": "8.*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Khalyomede\\LaravelRouteFind\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "testbench package:test",
+        "analyse": "phpstan analyse",
+        "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
+        "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
+        "install-checker": "local-php-security-checker-installer",
+        "check": "local-php-security-checker"
+    }
+}
