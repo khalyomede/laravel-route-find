@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -100,8 +101,15 @@ final class RouteFind extends Command
     private static function getFilePathWithNumberFromRoute(Route $route): string
     {
         $controller = $route->getController();
-        $controllerFqdn = get_class($controller);
-        $filePath = str_replace("App", "app", str_replace("\\", DIRECTORY_SEPARATOR, $controllerFqdn)) . ".php";
+        $classPath = get_class($controller);
+        $filePath = preg_replace("/^App/", "app", str_replace("\\", DIRECTORY_SEPARATOR, $classPath));
+
+        if (App::runningUnitTests() && is_string($filePath)) {
+            $filePath = preg_replace("/^Tests/", "tests", $filePath); // For feature tests
+        }
+
+        $filePath =  "$filePath.php";
+
         $method = $route->getActionMethod();
         $lineNumber = self::getMethodLineNumberFromFile($filePath, $method);
 

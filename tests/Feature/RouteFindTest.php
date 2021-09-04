@@ -49,7 +49,7 @@ final class RouteFindTest extends TestCase
             "middlewares",
         ], [
             [
-                "Tests/Controllers/ContactController.php:9",
+                "tests/Controllers/ContactController.php:9",
                 "contact",
                 "",
                 ""
@@ -74,7 +74,7 @@ final class RouteFindTest extends TestCase
             "middlewares",
         ], [
             [
-                "Tests/Controllers/ContactController.php:14",
+                "tests/Controllers/ContactController.php:14",
                 "contact",
                 "contact.store",
                 ""
